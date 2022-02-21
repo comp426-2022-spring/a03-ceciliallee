@@ -1,14 +1,18 @@
 // Require Express.js
 const express = require('express')
 const app = express()
-
+const args = minimist(process.argv.slice(2))
+args["port"]
+const port = args.port || 5000;
 // Start an app server
-const server = app.listen(3000, () => {
+const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', HTTP_PORT))
 });
 
 // Default response for any other request
 app.use(function (req, res) {
+    res.statusCode = 404;
+    res.writeHead(res.statusCode, { "Content-Type": "text/plain" });
     res.status(404).send('404 NOT FOUND')
 });
 
