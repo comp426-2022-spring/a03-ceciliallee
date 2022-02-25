@@ -1,6 +1,7 @@
-
 // Require Express.js
-const express = require('express')
+import minimist from "minimist";
+import express from "express";
+//const express = require('express')
 const app = express()
 const statusCode = 200;
 const status = "OK";
