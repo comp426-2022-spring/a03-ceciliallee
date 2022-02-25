@@ -90,6 +90,33 @@ app.get("/app/flip/:number", (req, res) => {
       "}}"
   );
 });
+app.get("/app/flip/call/tails/", (req, res) => {
+  res.statusCode = 200;
+  let result = flipACoin("tails");
+  res.send(
+    '{"call":"' +
+      result.get("call") +
+      '","flip":"' +
+      result.get("flip") +
+      '","result":"' +
+      result.get("result") +
+      '"}'
+  );
+});
+
+app.get("/app/flip/call/heads/", (req, res) => {
+  res.statusCode = 200;
+    let result = flipACoin("heads");
+  res.send(
+    '{"call":"' +
+      result.get("call") +
+      '","flip":"' +
+      result.get("flip") +
+      '","result":"' +
+      result.get("result") +
+      '"}'
+  );
+});
 
 const server = app.listen(port, () => {
   console.log("App listening on port %PORT%".replace("%PORT%", aPort));
