@@ -5,7 +5,7 @@ const app = express()
 const minimist = require('minimist')
 const { exist } = require('process')
 
-const ars = minimist(process.argv.slice(2))
+const args = minimist(process.argv.slice(2))
 const port = args['port']
 const aPort = port || 3000;
  
@@ -64,6 +64,13 @@ function flipACoin(call) {
 }
 // end coin functions
 
-const server = app.listen(port, () => {
-    console.log('App listening on port %PORT%'.replace('%PORT', port))
+app.get('/app/', (req, res) => {
+    res.statusCode = 200
+    res.statusMessage = 'OK'
+    res.writeHead(res.statusCode, { "Content-Type": CONTENT_TYPE_TEXT_PLAIN });
+    res.end(res.statusCode + " " + res.statusMessage);
 })
+
+const server = app.listen(port, () => {
+  console.log("App listening on port %PORT%".replace("%PORT", port));
+});
