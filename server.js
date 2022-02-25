@@ -76,6 +76,21 @@ app.get("/app/flip/", (req, res) => {
   res.send('{"flip":"' + result + '"}');
 });
 
+app.get("/app/flip/:number", (req, res) => {
+  res.statusCode = 200;
+    let result = coinFlips(req.params.number);
+    let count = countFlips(result);
+  res.send(
+    '{"raw":[' +
+      result +
+      '],"summary":{"tails":' +
+      count.get("tails") +
+      ',"heads":' +
+      count.get("heads") +
+      "}}"
+  );
+});
+
 const server = app.listen(port, () => {
   console.log("App listening on port %PORT%".replace("%PORT%", aPort));
 });
