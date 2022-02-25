@@ -3,7 +3,6 @@ const require = createRequire(import.meta.url);
 const express = require('express')
 const app = express()
 const minimist = require('minimist')
-const { exist } = require('process')
 
 const args = minimist(process.argv.slice(2))
 const port = args['port']
