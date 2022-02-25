@@ -80,46 +80,23 @@ app.get("/app/flip/:number", (req, res) => {
   res.statusCode = 200;
     let result = coinFlips(req.params.number);
     let count = countFlips(result);
-//   res.send(
-//     '{"raw":[' +
-//       result +
-//       '],"summary":{"tails":' +
-//       count.get("tails") +
-//       ',"heads":' +
-//       count.get("heads") +
-//       "}}"
-//   );
+
     res.status(200).json({
         'raw': result,
         'summary': count
     })
 });
+
 app.get("/app/flip/call/tails/", (req, res) => {
   res.statusCode = 200;
   let result = flipACoin("tails");
-  res.send(
-    '{"call":"' +
-      result.get("call") +
-      '","flip":"' +
-      result.get("flip") +
-      '","result":"' +
-      result.get("result") +
-      '"}'
-  );
+    res.send(result);
 });
 
 app.get("/app/flip/call/heads/", (req, res) => {
   res.statusCode = 200;
     let result = flipACoin("heads");
-  res.send(
-    '{"call":"' +
-      result.get("call") +
-      '","flip":"' +
-      result.get("flip") +
-      '","result":"' +
-      result.get("result") +
-      '"}'
-  );
+    res.send(result);
 });
 
 const server = app.listen(port, () => {
