@@ -8,7 +8,7 @@ const status = "OK";
 const minimist = require("minimist");
 const args = minimist(process.argv.slice(2))
 args["port"]
-const port = args.port ||process.env.PORT|| 3000;
+const port = args.port || 5000;
 
 function coinFlip() {
   let randomNum = Math.random();
@@ -66,17 +66,7 @@ function flipACoin(call) {
   }
 }
 
-// Start an app server
-const server = app.listen(port, () => {
-    console.log('App listening on port %PORT%'.replace('%PORT%', port))
-});
 
-// Default response for any other request
-app.use(function (req, res) {
-    res.statusCode = 404;
-    res.writeHead(res.statusCode, { "Content-Type": "text/plain" });
-    res.status(404).send('404 NOT FOUND')
-});
 
 app.get('/app/', (req, res) => {
     // Respond with status 200
@@ -119,4 +109,14 @@ app.get("/app/flip/call/tails", (req, res) => {
     res.status(statusCode).json(flip);
 });
 
+// Start an app server
+const server = app.listen(port, () => {
+    console.log('App listening on port %PORT%'.replace('%PORT%', port))
+});
 
+// Default response for any other request
+app.use(function (req, res) {
+    res.statusCode = 404;
+    res.writeHead(res.statusCode, { "Content-Type": "text/plain" });
+    res.status(404).send('404 NOT FOUND')
+});
