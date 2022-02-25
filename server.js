@@ -77,7 +77,7 @@ app.get("/app/flip/", (req, res) => {
 });
 
 app.get("/app/flip/:number", (req, res) => {
-  res.statusCode = 200;
+  //res.statusCode = 200;
     let result = coinFlips(req.params.number);
     let count = countFlips(result);
 
