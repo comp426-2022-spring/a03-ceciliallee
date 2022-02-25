@@ -70,6 +70,12 @@ app.get("/app/", (req, res) => {
   res.end(res.statusCode + " " + res.statusMessage);
 });
 
+app.get("/app/flip/", (req, res) => {
+    res.statusCode = 200;
+    let result = coinFlip()
+  res.send('{"flip":"' + result + '"}');
+});
+
 const server = app.listen(port, () => {
   console.log("App listening on port %PORT%".replace("%PORT%", aPort));
 });
