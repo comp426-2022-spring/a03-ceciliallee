@@ -6,7 +6,7 @@ const minimist = require('minimist')
 
 const args = minimist(process.argv.slice(2))
 const port = args['port']
-const aPort = port || 3000;
+const aPort = port || process.env.PORT || 3000;
  
 // coin functions
 function coinFlip() {
@@ -76,15 +76,14 @@ app.get("/app/flip/", (req, res) => {
   res.send('{"flip":"' + result + '"}');
 });
 
-app.get("/app/flip/:number", (req, res) => {
-  //res.statusCode = 200;
-    let result = coinFlips(req.params.number);
-    let count = countFlips(result);
+app.get("/app/flips/:number", (req, res) => {
+  let flips = coinFlips(req.params.number);
+  let flipsCount = countFlips(flips);
 
-    res.status(200).json({
-        'raw': result,
-        'summary': count
-    })
+  res.status(200).json({
+    raw: flips,
+    summary: flipsCount,
+  });
 });
 
 app.get("/app/flip/call/tails/", (req, res) => {
